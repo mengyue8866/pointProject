@@ -1,0 +1,3 @@
+define(['Class'],function(Class){
+
+});
