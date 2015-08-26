@@ -1,9 +1,9 @@
 (function(_){
 	var building = false;
 	function Promise(){
-		if(!building && typeof this.initialize == 'function'){
+		// if(!building && typeof this.initialize == 'function'){
 			this.initialize(this,arguments);
-		}
+		// }
 	}
 	Promise.prototype ={
 		initialize:function(){
@@ -58,6 +58,21 @@
 		procedure:function(status,handler,value) {
 			var func = handler[status];
 			var def = handler.deferred;
+			var newResult;
+			if(func){
+				newResult = func(value);
+				if(typeof newResult == 'function'){
+					newResult.then(makeSingler(def,'fulfilled'),makeSingler(def,'rejected'));
+				}else{
+
+				}
+			}
+		},
+		makeSingler:function(){
+			
+		},
+		transition:function(){
+			
 		}
 	}
 })(Underscore)
